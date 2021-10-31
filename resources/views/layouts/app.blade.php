@@ -72,7 +72,7 @@
                             </li>
                         @endguest
                         <li class="nav-item">
-                            <p class="nav-link m-0">{{ date('Y-m-d H:i:s') }}</p>
+                            <p class="nav-link m-0">{{ date('D, d-M-Y') }}</p>
                         </li>
                     </ul>
                 </div>
