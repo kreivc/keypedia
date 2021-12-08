@@ -70,24 +70,30 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="Male" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
-
+                        <div class="form-group row {{ $errors->has('gender') ? ' has-error' : '' }}">
+                            <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
                             <div class="col-md-6 d-flex align-items-center">
                                 <div class="form-check mr-3">
-                                    <input class="form-check-input" type="radio" name="Male" id="Male" value="Male">
+                                    <input class="form-check-input" type="radio" name="gender" id="male" value="Male">
                                     <label class="form-check-label" for="Male">
+                                        {{ (old('sex') == 'male') ? 'checked' : '' }}
                                         Male
-                                    </label>
+                                   </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="Female" id="Female" value="Female">
+                                    <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
                                     <label class="form-check-label" for="Female">
+                                        {{ (old('sex') == 'female') ? 'checked' : '' }}
                                         Female
                                     </label>
                                 </div>
                             </div>
+                            @error('gender')
+                            <span class="help-block">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
                         <div class="form-group row">

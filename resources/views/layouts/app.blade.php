@@ -15,9 +15,10 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 </head>
 <body>
     <div id="app">
@@ -39,7 +40,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        @guest
+                        @if (!Auth::check())
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -70,7 +71,7 @@
                                     </form>
                                 </div>
                             </li>
-                        @endguest
+                        @endif
                         <li class="nav-item">
                             <p class="nav-link m-0">{{ date('D, d-M-Y') }}</p>
                         </li>
