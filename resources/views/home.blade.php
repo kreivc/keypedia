@@ -24,8 +24,6 @@
         </div>
     </div>
 </div>
-@else
-//show logged out navbar
 @endif
 
 @endsection

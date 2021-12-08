@@ -45,9 +45,11 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href=""> My Cart </a>
-                                <a class="dropdown-item" href=""> Transaction History</a>
-                                <a class="dropdown-item" href=""> Change Password</a>
+                                @foreach ($categories as $ctg)
+                                <a class="dropdown-item" href="">{{$ctg->name}}</a>
+                                @endforeach
+                                
+                               
                             </div>
                         </li>
                         <!-- Authentication Links -->
