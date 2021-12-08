@@ -39,6 +39,17 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Categories
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href=""> My Cart </a>
+                                <a class="dropdown-item" href=""> Transaction History</a>
+                                <a class="dropdown-item" href=""> Change Password</a>
+                            </div>
+                        </li>
                         <!-- Authentication Links -->
                         @if (!Auth::check())
                             @if (Route::has('login'))
@@ -54,12 +65,16 @@
                             @endif
                             
                         @else
+                            @if(Auth::user()->role == 'customer')
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    USER
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href=""> My Cart </a>
+                                    <a class="dropdown-item" href=""> Transaction History</a>
+                                    <a class="dropdown-item" href=""> Change Password</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -71,6 +86,28 @@
                                     </form>
                                 </div>
                             </li>
+                            @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    MANAGER
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href=""> Add Keyboard</a>
+                                    <a class="dropdown-item" href=""> Manage Categories</a>
+                                    <a class="dropdown-item" href=""> Change Password</a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                            @endif
                         @endif
                         <li class="nav-item">
                             <p class="nav-link m-0">{{ date('D, d-M-Y') }}</p>
