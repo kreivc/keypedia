@@ -27,4 +27,8 @@ class HomeController extends Controller
         $categories = Category::all();
         return view('home',compact('categories'));
     }
+
+    public function showAddKeyboard(){
+        return view('createKeyboard');
+    }
 }

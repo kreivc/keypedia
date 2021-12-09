@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KeyboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,9 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::prefix('/keyboard')->middleware('auth')->group(function(){
+    Route::get('/createKeyboard',[HomeController::class,'showAddKeyboard'])->middleware('manager')->name('createKeyboard');
+    Route::post('/create',[KeyboardController::class,'add'])->middleware('manager')->name('addKeyboard');
+});

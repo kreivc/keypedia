@@ -39,19 +39,7 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Categories
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                @foreach ($categories as $ctg)
-                                <a class="dropdown-item" href="">{{$ctg->name}}</a>
-                                @endforeach
-                                
-                               
-                            </div>
-                        </li>
+                        
                         <!-- Authentication Links -->
                         @if (!Auth::check())
                             @if (Route::has('login'))
@@ -67,6 +55,19 @@
                             @endif
                             
                         @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Categories
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                @foreach ($categories as $ctg)
+                                    <a class="dropdown-item" href="">{{$ctg->name}}</a>
+                                    @endforeach
+                                    
+                                
+                                </div>
+                            </li>
                             @if(Auth::user()->role == 'customer')
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -95,7 +96,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href=""> Add Keyboard</a>
+                                    <a class="dropdown-item" href="{{ route('createKeyboard') }}"> Add Keyboard</a>
                                     <a class="dropdown-item" href=""> Manage Categories</a>
                                     <a class="dropdown-item" href=""> Change Password</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"

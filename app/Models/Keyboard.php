@@ -10,7 +10,7 @@ class Keyboard extends Model
     use HasFactory;
     protected $table = "keyboards";
     protected $fillable =[
-        'name'
+        'category_id','name','price','description'
     ];
 
     public function category(){
