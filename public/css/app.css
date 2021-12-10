@@ -10022,3 +10022,21 @@ h3 {
 .content-minh {
   min-height: 86vh;
 }
+
+.bg-base {
+  background-color: #4da9ba;
+}
+
+.bg-outside {
+  background-color: #b4a7c7;
+}
+
+.bg-inside {
+  background-color: #baadcd;
+}
+
+.bg-button {
+  background-color: #8d9bc5;
+  color: white;
+  border: white;
+}
