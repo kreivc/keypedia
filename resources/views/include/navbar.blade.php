@@ -1,3 +1,8 @@
+@php
+use App\Models\Category;
+$categories = Category::all();
+@endphp
+
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
@@ -77,7 +82,7 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('createKeyboard') }}"> Add Keyboard</a>
-                                <a class="dropdown-item" href=""> Manage Categories</a>
+                                <a class="dropdown-item" href="{{ route('manageCategory') }}"> Manage Categories</a>
                                 <a class="dropdown-item" href=""> Change Password</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

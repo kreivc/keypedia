@@ -25,11 +25,11 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('home',compact('categories'));
+        return view('home', compact('categories'));
     }
 
     public function showAddKeyboard(){
         $categories = Category::all();
-        return view('createKeyboard',compact('categories'));
+        return view('createKeyboard', compact('categories'));
     }
 }

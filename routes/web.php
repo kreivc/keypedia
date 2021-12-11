@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KeyboardController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +25,6 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::prefix('/keyboard')->middleware('auth')->group(function(){
     Route::get('/createKeyboard',[HomeController::class,'showAddKeyboard'])->middleware('manager')->name('createKeyboard');
     Route::post('/createKeyboard',[KeyboardController::class,'addKeyboard'])->middleware('manager')->name('addKeyboard');
+
+    Route::get('/manageCategory',[CategoryController::class,'index'])->middleware('manager')->name('manageCategory');
 });
