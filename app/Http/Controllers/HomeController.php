@@ -28,8 +28,5 @@ class HomeController extends Controller
         return view('home', compact('categories'));
     }
 
-    public function showAddKeyboard(){
-        $categories = Category::all();
-        return view('createKeyboard', compact('categories'));
-    }
+    
 }
