@@ -88,7 +88,7 @@
                                 <div class="col-md-6 d-flex align-items-center">
                                     <div class="form-check mr-3">
                                         <input class="form-check-input" type="radio" name="gender" id="male" value="Male">
-                                        <label class="form-check-label" for="Male">
+                                        <label class="form-check-label" for="male">
                                             {{ old('sex') == 'male' ? 'checked' : '' }}
                                             Male
                                         </label>
@@ -97,7 +97,7 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="gender" id="female"
                                             value="Female">
-                                        <label class="form-check-label" for="Female">
+                                        <label class="form-check-label" for="female">
                                             {{ old('sex') == 'female' ? 'checked' : '' }}
                                             Female
                                         </label>
