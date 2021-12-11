@@ -1,6 +1,18 @@
 @extends('layouts.app')
-@section('content')
 
+@if (Session::has('success'))
+    <div class="alert alert-success">
+        <span>{{ Session::get('success') }}</span>
+    </div>
+@endif
+
+@if (!$errors->isEmpty())
+    @foreach ($errors->all() as $error)
+        <div class="alert alert-danger">{{ $error }}</div>
+    @endforeach
+@endif
+
+@section('content')
     <div class="container">
         <div class="text-center">
             <p class="h1 font-weight-bold">Welcome to Keypedia</p>
@@ -14,7 +26,7 @@
                 <div class="p-1 bg-outside m-3">
                     <div class="card bg-inside" style="width: 20rem;">
                         <div class="card-body text-center">
-                            <a class="card-text h5" href="#">{{ $ctg->name }}</a>
+                            <a class="card-text h5" href="/viewByCategory/{{ $ctg->id }}">{{ $ctg->name }}</a>
                         </div>
                         <img src="/storage/assets/{{ $ctg->image }}" class="d-block w-100" alt="{{ $ctg->name }}">
                     </div>

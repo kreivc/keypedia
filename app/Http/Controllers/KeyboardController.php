@@ -28,7 +28,7 @@ class KeyboardController extends Controller
             return redirect(route('createKeyboard'))->withErrors($validator)->withInput();
         }
 
-        $path = $request->file('image')->store('assets');
+        $path = $request->file('image')->store('public/assets');
 
         Keyboard::create([
             'category_id'=> $request->category,

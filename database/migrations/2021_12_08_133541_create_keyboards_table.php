@@ -18,9 +18,9 @@ class CreateKeyboardsTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
             $table->string('name');
-            $table->string('price');
+            $table->integer('price');
             $table->string('description');
-            $table->string('photo')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

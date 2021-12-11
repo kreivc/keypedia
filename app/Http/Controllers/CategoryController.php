@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Category;
+use App\Models\Keyboard;
 use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
@@ -51,5 +52,26 @@ class CategoryController extends Controller
     public function edit($id){
         $category = Category::find($id);
         return view('editCategory', compact('category'));
+    }
+
+    public function viewByCategory($id){
+        $category = Category::find($id);
+        $keyboards = Keyboard::where('category_id', $id)->simplePaginate(8);
+        return view('viewByCategory', compact('keyboards', 'category'));
+    }
+
+    public function search(Request $request){
+        $filter = $request->get('filter');
+        $search = $request->input('search');
+        $categoryId = $request->input('ctgId');
+        if($filter == 'name'){
+            $keyboards = Keyboard::where('name', 'like', '%'.$search.'%')->where('category_id', '=', $categoryId)->simplePaginate(8);
+        }else{
+            $keyboards = Keyboard::where('price', '=', $search)->where('category_id', '=', $categoryId)->simplePaginate(8);
+        }
+
+        $category = Category::find($categoryId);
+        
+        return view('viewByCategory', compact('keyboards', 'category'));
     }
 }
