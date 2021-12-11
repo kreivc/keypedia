@@ -18,7 +18,7 @@
                                     href="/category/delete/{{ $ctg->id }}">Delete
                                     Categories</a>
                                 <a class="bg-button mx-1 p-1 px-1 border border-white rounded-sm bitOfPaddingX"
-                                    href="/category/update/{{ $ctg->id }}">Update
+                                    href="/category/edit/{{ $ctg->id }}">Update
                                     Categories</a>
                             </div>
                         </div>

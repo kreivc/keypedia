@@ -24,9 +24,32 @@ class CategoryController extends Controller
 
     public function update($id, Request $request){
         $category = $request->all();
-
-        $validator = Validator::make($category,[
-            
+        $validator = Validator::make($category, [
+            'name' => 'required|string|unique:categories|max:255|min:5',
         ]);
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $category = Category::find($id); 
+        $category->name = $request->name;
+
+        if($request->has('image')){
+            Storage::delete($category->image);
+            $path = $request->file('image')->store('public/assets');
+            $temp = $request->file('image')->store('');
+            $category->image = $temp;
+        }else{
+            $path = $category->image;
+        }
+
+        $category->save();
+        $categories = Category::all();
+        return view('manageCategory', compact('categories'));
+    }
+
+    public function edit($id){
+        $category = Category::find($id);
+        return view('editCategory', compact('category'));
     }
 }
