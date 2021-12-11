@@ -1,7 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+
+
+@if (Session::has('success'))
+        <div class="alert alert-success">
+            <span>{{Session::get('success')}}</span>
+        </div>
+
+    @endif
+
+  
+
+    @if(!$errors->isEmpty())
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger">{{ $error }}</div>
+        @endforeach
+    @endif
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -9,16 +25,16 @@
                     <div class="card-header bg-headerform bg-outside">Add Keyboard</div>
 
                     <div class="card-body bg-bodyform bg-inside">
-                        <form method="POST" action="{{ route('addKeyboard') }}">
+                        <form method="POST" action="{{ route('addKeyboard') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group row">
                                 <label for="category" class="col-md-4 col-form-label text-md-right">Category</label>
                                 <div class="input-group col-md-6">
-                                    <select class="custom-select" class="form-control" id="category">
+                                    <select class="custom-select" class="form-control" name="category" id="category">
                                         <option selected>Choose...</option>
                                         @foreach ($categories as $ctg)
-                                            <option value="{{ $ctg->id }}">{{ $ctg->name }}</option>
+                                            <option value="{{ $ctg->id }}" >{{ $ctg->name }}</option>
                                         @endforeach
 
                                     </select>
@@ -26,16 +42,16 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="keyboard_name" class="col-md-4 col-form-label text-md-right">Keyboard
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Keyboard
                                     Name</label>
 
                                 <div class="col-md-6">
-                                    <input id="keyboard_name" type="text"
-                                        class="form-control @error('keyboard_name') is-invalid @enderror"
-                                        name="keyboard_name" value="{{ old('keyboard_name') }}" required
-                                        autocomplete="keyboard_name" autofocus>
+                                    <input id="name" type="text"
+                                        class="form-control @error('name') is-invalid @enderror"
+                                        name="name" value="{{ old('name') }}" required
+                                        autocomplete="name" autofocus>
 
-                                    @error('keyboard_name')
+                                    @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
