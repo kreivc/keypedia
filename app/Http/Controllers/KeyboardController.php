@@ -22,21 +22,24 @@ class KeyboardController extends Controller
             'name' => 'required|string|unique:keyboards|max:255|min:5',
             'price' => 'required|integer',
             'description' =>  'required|string|unique:keyboards|min:20',
-            'image' => 'required|image|max:10240'
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
         if($validator->fails()){
             return redirect(route('createKeyboard'))->withErrors($validator)->withInput();
         }
 
-        $path = $request->file('image')->store('public/assets');
+        $image = $request->file('image');
+        $imageName = time().$image->getClientOriginalName();
+        $image->storeAs('public/assets/', $imageName);
 
-        Keyboard::create([
-            'category_id'=> $request->category,
-            'name' => $request->name,
-            'price' => $request->price,
-            'description' => $request->description,
-            'image' => $path
-        ]);
+        $keyboard = new Keyboard();
+        $keyboard->category_id = $request->category;
+        $keyboard->name = $request->name;
+        $keyboard->price = $request->price;
+        $keyboard->description = $request->description;
+        $keyboard->image = $imageName;
+        $keyboard->save();
+
         return redirect(route('createKeyboard'))->with('success','Data Success Send to database!');
 
     }

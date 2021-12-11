@@ -59,7 +59,7 @@
 
                                 <div class="col-md-6">
                                     <input id="price" type="number" class="form-control" name="price" required
-                                        autocomplete="price" min="0">
+                                        autocomplete="price" min="1">
                                 </div>
 
                                 @error('price')
@@ -88,11 +88,11 @@
                                 <label for="image" class="col-md-4 col-form-label text-md-right">Keyboard Image</label>
 
                                 <div class="col-md-6">
-                                    <input id="image" type="file" name="image" required autocomplete="image" min="0">
+                                    <input id="image" type="file" name="image" required>
                                 </div>
 
                                 @error('image')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="form-control" class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
@@ -105,6 +105,7 @@
                                     </button>
                                 </div>
                             </div>
+
                         </form>
                     </div>
                 </div>

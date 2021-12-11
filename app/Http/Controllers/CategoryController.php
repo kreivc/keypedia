@@ -35,13 +35,14 @@ class CategoryController extends Controller
         $category = Category::find($id); 
         $category->name = $request->name;
 
-        if($request->has('image')){
-            Storage::delete($category->image);
-            $path = $request->file('image')->store('public/assets');
-            $temp = $request->file('image')->store('');
-            $category->image = $temp;
-        }else{
-            $path = $category->image;
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $imageName = time().$image->getClientOriginalName();
+            $image->storeAs('public/assets/', $imageName);
+            $category->image = $imageName;
+        }
+        else{
+            $category->image = $category->image;
         }
 
         $category->save();
