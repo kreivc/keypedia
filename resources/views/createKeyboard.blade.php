@@ -1,23 +1,19 @@
 @extends('layouts.app')
 
-@section('content')
-
-
 @if (Session::has('success'))
-        <div class="alert alert-success">
-            <span>{{Session::get('success')}}</span>
-        </div>
+    <div class="alert alert-success">
+        <span>{{ Session::get('success') }}</span>
+    </div>
 
-    @endif
+@endif
 
-  
+@if (!$errors->isEmpty())
+    @foreach ($errors->all() as $error)
+        <div class="alert alert-danger">{{ $error }}</div>
+    @endforeach
+@endif
 
-    @if(!$errors->isEmpty())
-        @foreach ($errors->all() as $error)
-            <div class="alert alert-danger">{{ $error }}</div>
-        @endforeach
-    @endif
-
+@section('content')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -34,7 +30,7 @@
                                     <select class="custom-select" class="form-control" name="category" id="category">
                                         <option selected>Choose...</option>
                                         @foreach ($categories as $ctg)
-                                            <option value="{{ $ctg->id }}" >{{ $ctg->name }}</option>
+                                            <option value="{{ $ctg->id }}">{{ $ctg->name }}</option>
                                         @endforeach
 
                                     </select>
@@ -46,10 +42,8 @@
                                     Name</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text"
-                                        class="form-control @error('name') is-invalid @enderror"
-                                        name="name" value="{{ old('name') }}" required
-                                        autocomplete="name" autofocus>
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                                        name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">

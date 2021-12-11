@@ -45,7 +45,8 @@ $categories = Category::all();
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             @foreach ($categories as $ctg)
-                                <a class="dropdown-item" href="">{{ $ctg->name }}</a>
+                                <a class="dropdown-item"
+                                    href="/viewByCategory/{{ $ctg->id }}">{{ $ctg->name }}</a>
                             @endforeach
 
 
@@ -61,7 +62,7 @@ $categories = Category::all();
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href=""> My Cart </a>
                                 <a class="dropdown-item" href=""> Transaction History</a>
-                                <a class="dropdown-item" href=""> Change Password</a>
+                                <a class="dropdown-item" href="{{ route('changePassword') }}"> Change Password</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
@@ -83,7 +84,7 @@ $categories = Category::all();
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('createKeyboard') }}"> Add Keyboard</a>
                                 <a class="dropdown-item" href="{{ route('manageCategory') }}"> Manage Categories</a>
-                                <a class="dropdown-item" href=""> Change Password</a>
+                                <a class="dropdown-item" href="{{ route('changePassword') }}"> Change Password</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
