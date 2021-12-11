@@ -23,5 +23,5 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('/keyboard')->middleware('auth')->group(function(){
     Route::get('/createKeyboard',[HomeController::class,'showAddKeyboard'])->middleware('manager')->name('createKeyboard');
-    Route::post('/create',[KeyboardController::class,'add'])->middleware('manager')->name('addKeyboard');
+    Route::post('/createKeyboard',[KeyboardController::class,'addKeyboard'])->middleware('manager')->name('addKeyboard');
 });

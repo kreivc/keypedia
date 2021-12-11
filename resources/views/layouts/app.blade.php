@@ -63,7 +63,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 @foreach ($categories as $ctg)
                                     <a class="dropdown-item" href="">{{$ctg->name}}</a>
-                                    @endforeach
+                                @endforeach
                                     
                                 
                                 </div>
