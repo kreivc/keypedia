@@ -31,6 +31,7 @@ Route::prefix('/keyboard')->middleware('auth')->group(function(){
 
 Route::prefix('/category')->middleware('auth')->group(function(){
     Route::get('/manageCategory',[CategoryController::class,'index'])->middleware('manager')->name('manageCategory');
-    Route::patch('/update/{id}',[CategoryController::class,'update'])->middleware('manager')->name('updateCategory');
+    Route::get('/edit/{id}',[CategoryController::class,'edit'])->middleware('manager')->name('editCategory');
+    Route::put('/update/{id}',[CategoryController::class,'update'])->middleware('manager')->name('updateCategory');
     Route::get('/delete/{id}',[CategoryController::class,'delete'])->middleware('manager')->name('delete');
 });
