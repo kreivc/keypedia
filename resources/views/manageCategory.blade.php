@@ -15,9 +15,11 @@
                             <p class="card-text h5" href="#">{{ $ctg->name }}</p>
                             <div class="d-flex align-items-center justify-content-center mt-2">
                                 <a class="bg-button mx-1 p-1 px-1 border border-white rounded-sm bitOfPaddingX"
-                                    href="#">Delete Categories</a>
+                                    href="/category/delete/{{ $ctg->id }}">Delete
+                                    Categories</a>
                                 <a class="bg-button mx-1 p-1 px-1 border border-white rounded-sm bitOfPaddingX"
-                                    href="#">Update Categories</a>
+                                    href="/category/update/{{ $ctg->id }}">Update
+                                    Categories</a>
                             </div>
                         </div>
                     </div>
