@@ -58,7 +58,7 @@ class CategoryController extends Controller
     public function viewByCategory($id){
         $category = Category::find($id);
         $keyboards = Keyboard::where('category_id', $id)->simplePaginate(8);
-        return view('viewByCategory', compact('keyboards', 'category'));
+        return view('viewKeyboard', compact('keyboards', 'category'));
     }
 
     public function search(Request $request){
@@ -73,6 +73,6 @@ class CategoryController extends Controller
 
         $category = Category::find($categoryId);
         
-        return view('viewByCategory', compact('keyboards', 'category'));
+        return view('viewKeyboard', compact('keyboards', 'category'));
     }
 }

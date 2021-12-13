@@ -26,7 +26,7 @@
                 <div class="p-1 bg-outside m-3">
                     <div class="card bg-inside" style="width: 20rem;">
                         <div class="card-body text-center">
-                            <a class="card-text h5" href="/viewByCategory/{{ $ctg->id }}">{{ $ctg->name }}</a>
+                            <a class="card-text h5" href="/viewKeyboard/{{ $ctg->id }}">{{ $ctg->name }}</a>
                         </div>
                         <img src="/storage/assets/{{ $ctg->image }}" class="d-block w-100" alt="{{ $ctg->name }}">
                     </div>

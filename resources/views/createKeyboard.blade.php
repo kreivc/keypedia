@@ -28,7 +28,7 @@
                                 <label for="category" class="col-md-4 col-form-label text-md-right">Category</label>
                                 <div class="input-group col-md-6">
                                     <select class="custom-select" class="form-control" name="category" id="category">
-                                        <option selected>Choose...</option>
+                                        <option value="null" selected>Choose...</option>
                                         @foreach ($categories as $ctg)
                                             <option value="{{ $ctg->id }}">{{ $ctg->name }}</option>
                                         @endforeach

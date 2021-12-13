@@ -34,7 +34,7 @@
                                     <div class="d-flex align-items-center justify-content-center mt-2">
                                         <a class="bg-button mx-1 p-1 px-1 border border-white rounded-sm bitOfPaddingX"
                                             href="#">Delete
-                                            Categories</a>
+                                            Keyboard</a>
                                         <a class="bg-button mx-1 p-1 px-1 border border-white rounded-sm bitOfPaddingX"
                                             href="#">Update
                                             Categories</a>

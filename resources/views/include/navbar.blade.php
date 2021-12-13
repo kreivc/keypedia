@@ -46,7 +46,7 @@ $categories = Category::all();
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             @foreach ($categories as $ctg)
                                 <a class="dropdown-item"
-                                    href="/viewByCategory/{{ $ctg->id }}">{{ $ctg->name }}</a>
+                                    href="/viewKeyboard/{{ $ctg->id }}">{{ $ctg->name }}</a>
                             @endforeach
 
 

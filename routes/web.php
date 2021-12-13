@@ -25,6 +25,9 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::prefix('/keyboard')->middleware('auth')->group(function(){
     Route::get('/createKeyboard',[KeyboardController::class,'index'])->middleware('manager')->name('createKeyboard');
     Route::post('/create',[KeyboardController::class,'add'])->middleware('manager')->name('addKeyboard');
+    Route::get('/edit/{id}',[KeyboardController::class,'edit'])->middleware('manager')->name('editKeyboard');
+    Route::put('/update/{id}',[KeyboardController::class,'update'])->middleware('manager')->name('updateKeyboard');
+    Route::get('/delete/{id}',[KeyboardController::class,'delete'])->middleware('manager')->name('deleteKeyboard');
 });
 
 Route::prefix('/category')->middleware('auth')->group(function(){
@@ -37,6 +40,6 @@ Route::prefix('/category')->middleware('auth')->group(function(){
 Route::get('/changePassword',[HomeController::class,'changePassword'])->middleware('auth')->name('changePassword');
 Route::post('/changePassword',[HomeController::class,'storeNewPassword'])->middleware('auth')->name('storeNewPassword');
 
-Route::get('/viewByCategory/{id}',[CategoryController::class,'viewByCategory'])->name('viewByCategory');
+Route::get('/viewKeyboard/{id}',[CategoryController::class,'viewByCategory'])->name('viewKeyboard');
 
 Route::get('/search',[CategoryController::class,'search'])->name('search');
