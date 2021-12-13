@@ -1,12 +1,24 @@
 @extends('layouts.app')
 
+@if (Session::has('success'))
+    <div class="alert alert-success">
+        <span>{{ Session::get('success') }}</span>
+    </div>
+
+@endif
+
+@if (!$errors->isEmpty())
+    @foreach ($errors->all() as $error)
+        <div class="alert alert-danger">{{ $error }}</div>
+    @endforeach
+@endif
 @section('content')
 
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header bg-outside">Update Category</div>
+                    <div class="card-header bg-outside">Update Keyboard</div>
 
                     <div class="card-body bg-inside">
                         <form method="POST" action="/category/update/{{ $category->id }}" enctype="multipart/form-data">

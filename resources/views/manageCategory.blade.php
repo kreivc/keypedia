@@ -12,7 +12,7 @@
                     <div class="card bg-inside" style="width: 20rem;">
                         <img src="/storage/assets/{{ $ctg->image }}" class="d-block w-100" alt="{{ $ctg->name }}">
                         <div class="card-body text-center">
-                            <a class="card-text h5" href="#">{{ $ctg->name }}</a>
+                            <p>{{ $ctg->name }}</p>
                             <div class="d-flex align-items-center justify-content-center mt-2">
                                 <a class="bg-button mx-1 p-1 px-1 border border-white rounded-sm bitOfPaddingX"
                                     href="/category/delete/{{ $ctg->id }}">Delete

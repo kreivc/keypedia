@@ -33,11 +33,11 @@
                                 @if (Auth::user()->role == 'manager')
                                     <div class="d-flex align-items-center justify-content-center mt-2">
                                         <a class="bg-button mx-1 p-1 px-1 border border-white rounded-sm bitOfPaddingX"
-                                            href="#">Delete
+                                            href="/keyboard/delete/{{ $key->id }}">Delete
                                             Keyboard</a>
                                         <a class="bg-button mx-1 p-1 px-1 border border-white rounded-sm bitOfPaddingX"
-                                            href="#">Update
-                                            Categories</a>
+                                            href="/keyboard/edit/{{ $key->id }}">Update
+                                            Keyboard</a>
                                     </div>
                                 @endif
                             @endif

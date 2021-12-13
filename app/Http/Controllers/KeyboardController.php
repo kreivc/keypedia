@@ -56,19 +56,24 @@ class KeyboardController extends Controller
     }
 
     public function update($id, Request $request){
-        $keyboard = $request->all();
-        $validator = Validator::make($keyboard, [
+        $data = $request->all();
+        $validator = Validator::make($data, [
             'category' => 'required',
             'name' => 'required|string|unique:keyboards|max:255|min:5',
             'price' => 'required|integer',
-            'description' =>  'required|string|unique:keyboards|min:20',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'description' =>  'string|min:20',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ]);
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
+        if($request->category == "null"){
+            return redirect()->back()->withErrors("Category Required!")->withInput();
+        }
+
         $keyboard = Keyboard::find($id);
+        // dd($keyboard);
         $keyboard->category_id = $request->category;
         $keyboard->name = $request->name;
         $keyboard->price = $request->price;
@@ -85,13 +90,14 @@ class KeyboardController extends Controller
         }
 
         $keyboard->save();
-        $category = Category::find($id);
-        $keyboards = Keyboard::where('category_id', $id)->simplePaginate(8);
+        $category = Category::find($request->category);
+        $keyboards = Keyboard::where('category_id',  $request->category)->simplePaginate(8);
         return view('viewKeyboard', compact('keyboards', 'category'));
     }
 
     public function edit($id){
         $keyboard = Keyboard::find($id);
-        return view('editKeyboard', compact('keyboard'));
+        $categories = Category::all();
+        return view('editKeyboard', compact('keyboard','categories'));
     }
 }

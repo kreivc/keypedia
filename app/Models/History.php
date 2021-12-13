@@ -11,11 +11,11 @@ class History extends Model
     protected $table = "histories";
 
     protected $fillable =[
-        'user_id','keyboard_id','transactionDate'
+        'user_id','transactionDate'
     ];
 
-    public function keyboard(){
-        return $this->belongsTo(Keyboard::class,'keyboard_id');
+    public function Transaction(){
+        return $this->hasMany(Transaction::class);
     }
 
     public function user(){

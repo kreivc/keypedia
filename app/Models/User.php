@@ -53,4 +53,8 @@ class User extends Authenticatable
     public function history(){
         return $this->hasMany(History::class);
     }
+
+    public function transaction(){
+        return $this->hasMany(Transaction::class);
+    }
 }
