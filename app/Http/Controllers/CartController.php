@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\History;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
@@ -88,7 +89,10 @@ class CartController extends Controller
             $transaction->save();
         }
 
+       
         $cartDelete = Cart::truncate();
+       
+        //$cartDelete = Cart::query()->forceDelete();
 
         $histories = History::where('user_id',auth()->user()->id)->get();
         return view('transactionHistory',compact('histories'));
@@ -100,7 +104,8 @@ class CartController extends Controller
     }
 
     public function viewDetailHistory($id){
-        $transactions = Transaction::where('history_id',$id);
+        $history = History::where('id',$id)->where('user_id',auth()->user()->id)->first();
+        $transactions = Transaction::where('history_id',$history->id);
         return view('transactionDetail',compact('transactions'));
     }
 }

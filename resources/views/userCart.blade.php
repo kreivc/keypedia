@@ -1,14 +1,24 @@
 @extends('layouts.app')
+@if (Session::has('success'))
+    <div class="alert alert-success">
+        <span>{{ Session::get('success') }}</span>
+    </div>
 
+@endif
+
+@if (!$errors->isEmpty())
+    @foreach ($errors->all() as $error)
+        <div class="alert alert-danger">{{ $error }}</div>
+    @endforeach
+@endif
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
                     <div class="card-header bg-outside">My Cart</div>
-
+                    @if ($carts != null)
                     <div class="card-body bg-inside">
-                        @if ($carts != null)
                             @foreach ($carts as $cart)
                                 <div class="d-flex align-self-start mb-3">
                                     <div style="width: 20rem;" class="mr-4">
@@ -54,8 +64,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
-                        @endif
+                            @endforeach   
                         <div>
                             <div class="d-flex justify-content-center">
                                 <a href="/userCart/checkout" class="btn bg-button text-white">
@@ -63,6 +72,15 @@
                                 </a>
                             </div>
                         </div>
+                        @else
+                        <div>
+                            <div class="d-flex justify-content-center">
+                                <p  class="bg-button text-white p-3 rounded-lg">
+                                    No Item in Your Cart.
+                                </p>
+                            </div>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

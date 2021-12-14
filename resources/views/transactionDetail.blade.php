@@ -2,9 +2,9 @@
 
 
 @section('content')
-@foreach ( $transactions as $trans )
-    <p>{{ $trans->quantity}}</p>
-@endforeach
+
+    <p>{{ $transactions->keyboard->name}}</p>
+
 
 
 @endsection
