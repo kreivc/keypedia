@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\History;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -22,6 +24,8 @@ class CartController extends Controller
         }
 
         $cart = Cart::where('user_id', auth()->user()->id)->where('keyboard_id',$id)->first();
+      
+        
         if($cart==NULL){
             $cart=Cart::create([
                 'user_id' => auth()->user()->id,
@@ -31,9 +35,11 @@ class CartController extends Controller
         }else{
             $cart->quantity = $cart->quantity+$request->quantity;
         }
+        
 
         $cart->save();
         $carts = Cart::where('user_id', auth()->user()->id)->get();
+        // echo $cart;
         return view('userCart',compact('carts'));
     }
 
@@ -61,5 +67,46 @@ class CartController extends Controller
     public function viewCart(){
         $carts = Cart::where('user_id', auth()->user()->id)->get();
         return view('userCart',compact('carts'));
+    }
+
+    public function checkout(){
+        $carts = Cart::where('user_id',auth()->user()->id)->get();
+        if($carts == NULL){
+            return redirect()->back()->withErrors("Failed Checkout Cart!")->withInput();
+        }
+
+        $history = History::create([
+            'user_id' => auth()->user()->id,
+            'transactionDate' => date('Y-m-d H:i:s'),
+        ]);
+
+        $history->save();
+        $length = sizeof($carts);
+        for( $i =0; $i< $length; $i++){
+            $transaction = Transaction::create([
+                'history_id' => $history->id,
+                'keyboard_id' => $carts[$i]->keyboard->id,
+                'quantity' => $carts[$i]->quantity
+            ]);
+            $transaction->save();
+            //  echo $carts[$i]->quantity;
+
+        }
+        // dd($transaction);
+        
+        // $cartDelete = Cart::all()->delete();
+
+        $histories = History::where('user_id',auth()->user()->id)->get();
+        return view('transactionHistory',compact('histories'));
+    }
+
+    public function viewHistory(){
+        $histories = History::where('user_id',auth()->user()->id)->get();
+        return view('transactionHistory',compact('histories'));
+    }
+
+    public function viewDetailHistory($id){
+        $transaction = Transaction::where('history_id',$id);
+        return view('transactionDetail',compact('transaction'));
     }
 }

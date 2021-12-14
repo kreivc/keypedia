@@ -47,16 +47,12 @@ Route::put('/addToCart/{id}',[CartController::class,'addToCart'])->middleware('a
 
 Route::prefix('/userCart')->middleware('auth')->middleware('customer')->group(function(){
     Route::get('/',[CartController::class,'viewCart'])->name('userCart');
-    Route::get('/update/{id}',[CartController::class,'updateCart'])->name('updateCart');
+    Route::POST('/update/{id}',[CartController::class,'updateCart'])->name('updateCart');
+    Route::get('/checkout',[CartController::class,'checkout'])->name('checkout');
 });
 
+Route::get('/transactionHistory',[CartController::class,'viewHistory'])->middleware('customer')->name('transactionHistory');
+Route::get('/transactionDetail/{id}',[CartController::class,'viewDetailHistory'])->middleware('customer')->name('transactionDetail');
+
+
 Route::get('/search',[CategoryController::class,'search'])->name('search');
-
-Route::get('/transactionHistory',function(){
-    return view('transactionHistory');
-})->name('transactionHistory');
-
-Route::get('/transactionDetail',function(){
-    return view('transactionDetail');
-})->name('transactionDetail');
-

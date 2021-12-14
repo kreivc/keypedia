@@ -13,7 +13,7 @@
                                 <div class="d-flex align-self-start mb-3">
                                     <div style="width: 20rem;" class="mr-4">
                                         <img src="/storage/assets/{{ $cart->keyboard->image }}" class="d-block w-100"
-                                            alt="{{ $cart->keyboard->image }}">
+                                            alt="{{ $cart->keyboard->name }}">
                                     </div>
                                     <div class="col-md-7">
                                         <div class="form-group row h3">
@@ -35,7 +35,7 @@
                                                     <div class="col-md-10">
                                                         <input id="quantity" type="number" class="form-control"
                                                             value="{{ $cart->quantity }}" name="quantity" required
-                                                            autocomplete="quantity" min="1">
+                                                            autocomplete="quantity" min="0">
                                                     </div>
 
                                                     @error('quantity')
@@ -58,7 +58,7 @@
                         @endif
                         <div>
                             <div class="d-flex justify-content-center">
-                                <a href="/checkout" class="btn bg-button text-white">
+                                <a href="/userCart/checkout" class="btn bg-button text-white">
                                     Checkout
                                 </a>
                             </div>
