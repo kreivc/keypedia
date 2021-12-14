@@ -44,3 +44,7 @@ Route::get('/viewKeyboard/{id}',[CategoryController::class,'viewByCategory'])->n
 Route::get('/keyboard/detail/{id}',[KeyboardController::class,'viewDetail'])->name('detailKeyboard');
 
 Route::get('/search',[CategoryController::class,'search'])->name('search');
+
+Route::get('/myCart',function(){
+    return view('myCart');
+})->name('myCart');

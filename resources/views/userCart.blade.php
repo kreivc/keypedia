@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header bg-outside">Detail Keyboard</div>
+                    <div class="card-header bg-outside">My Cart</div>
 
                     <div class="card-body bg-inside">
                         <div class="d-flex align-self-start">
