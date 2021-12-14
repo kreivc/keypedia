@@ -52,3 +52,11 @@ Route::prefix('/userCart')->middleware('auth')->middleware('customer')->group(fu
 
 Route::get('/search',[CategoryController::class,'search'])->name('search');
 
+Route::get('/transactionHistory',function(){
+    return view('transactionHistory');
+})->name('transactionHistory');
+
+Route::get('/transactionDetail',function(){
+    return view('transactionDetail');
+})->name('transactionDetail');
+
