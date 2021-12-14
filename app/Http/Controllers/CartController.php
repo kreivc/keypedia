@@ -33,10 +33,28 @@ class CartController extends Controller
         }
 
         $cart->save();
-        // dd($cart);
-
         $carts = Cart::where('user_id', auth()->user()->id)->get();
-        echo $carts;
+        return view('userCart',compact('carts'));
+    }
+
+    public function updateCart($id, Request $request){
+        $data = $request->all();
+        $validator = Validator::make($data,[
+            'quantity' => 'required|integer',
+        ]);
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $cart = Cart::where('id',$id)->where('user_id', auth()->user()->id)->first();
+        if($request->quantity==0){
+            $cartDelete = Cart::find($id);
+            $cartDelete->delete();
+        }else{
+            $cart->quantity = $request->quantity;
+        }
+        $cart->save();
+        $carts = Cart::where('user_id', auth()->user()->id)->get();
         return view('userCart',compact('carts'));
     }
 
