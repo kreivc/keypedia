@@ -48,3 +48,11 @@ Route::get('/userCart',[CartController::class,'viewCart'])->name('userCart');
 
 Route::get('/search',[CategoryController::class,'search'])->name('search');
 
+Route::get('/transactionHistory',function(){
+    return view('transactionHistory');
+})->name('transactionHistory');
+
+Route::get('/transactionDetail',function(){
+    return view('transactionDetail');
+})->name('transactionDetail');
+

@@ -33,10 +33,9 @@ class CartController extends Controller
         }
 
         $cart->save();
-        // dd($cart);
 
         $carts = Cart::where('user_id', auth()->user()->id)->get();
-        echo $carts;
+
         return view('userCart',compact('carts'));
     }
 
