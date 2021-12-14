@@ -43,11 +43,8 @@ Route::post('/changePassword',[HomeController::class,'storeNewPassword'])->middl
 
 Route::get('/viewKeyboard/{id}',[CategoryController::class,'viewByCategory'])->name('viewKeyboard');
 Route::get('/keyboard/detail/{id}',[KeyboardController::class,'viewDetail'])->name('detailKeyboard');
-Route::post('/addToCart/{id}',[CartController::class,'addToCart'])->middleware('auth')->name('addCart');
-
+Route::put('/addToCart/{id}',[CartController::class,'addToCart'])->middleware('auth')->name('addCart');
+Route::get('/userCart',[CartController::class,'viewCart'])->name('userCart');
 
 Route::get('/search',[CategoryController::class,'search'])->name('search');
 
-Route::get('/myCart',function(){
-    return view('myCart');
-})->name('myCart');

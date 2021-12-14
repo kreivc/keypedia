@@ -15,7 +15,7 @@ class Cart extends Model
     ];
 
     public function keyboard(){
-        return $this->hasMany(Keyboard::class,'keyboard_id');
+        return $this->hasOne(Keyboard::class,'keyboard_id');
     }
 
     public function user(){

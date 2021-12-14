@@ -25,10 +25,12 @@
                                 <div class="form-group row">
                                     <p class="col-form-label">{{ $keyboard->description }}</p>
                                 </div>
-                                @if (!Auth::user()->role == 'manager')
+                                @if (Auth::user()->role != 'manager')
                                     <div class="form-group row justify-content-center">
-                                        <form method="POST" action="" enctype="multipart/form-data">
+                                        <form method="POST" action="/addToCart/{{ $keyboard->id }}"
+                                            enctype="multipart/form-data">
                                             @csrf
+                                            @method('PUT')
                                             <div class="d-flex align-items-center justify-content-center">
                                                 <label for="quantity" class="col-form-label text-md-left">Quantity</label>
 
