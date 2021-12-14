@@ -15,7 +15,7 @@ class Cart extends Model
     ];
 
     public function keyboard(){
-        return $this->belongsTo(Keyboard::class, 'id');
+        return $this->belongsTo(Keyboard::class, 'keyboard_id');
     }
 
     public function user(){

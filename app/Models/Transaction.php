@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     use HasFactory;
-    protected $table = "carts";
+    protected $table = "transactions";
 
     protected $fillable =[
         'user_id','keyboard_id','history_id','quantity'
     ];
 
     public function keyboard(){
-        return $this->hasMany(Keyboard::class,'keyboard_id');
+        return $this->belongsTo(Keyboard::class,'keyboard_id');
     }
 
     public function user(){

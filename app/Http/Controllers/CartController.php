@@ -36,10 +36,8 @@ class CartController extends Controller
             $cart->quantity = $cart->quantity+$request->quantity;
         }
         
-
         $cart->save();
         $carts = Cart::where('user_id', auth()->user()->id)->get();
-        // echo $cart;
         return view('userCart',compact('carts'));
     }
 
@@ -81,20 +79,16 @@ class CartController extends Controller
         ]);
 
         $history->save();
-        $length = sizeof($carts);
-        for( $i =0; $i< $length; $i++){
+        foreach($carts as $cart){
             $transaction = Transaction::create([
                 'history_id' => $history->id,
-                'keyboard_id' => $carts[$i]->keyboard->id,
-                'quantity' => $carts[$i]->quantity
+                'keyboard_id' => $cart->keyboard->id,
+                'quantity' => $cart->quantity
             ]);
             $transaction->save();
-            //  echo $carts[$i]->quantity;
-
         }
-        // dd($transaction);
-        
-        // $cartDelete = Cart::all()->delete();
+
+        $cartDelete = Cart::truncate();
 
         $histories = History::where('user_id',auth()->user()->id)->get();
         return view('transactionHistory',compact('histories'));
@@ -106,7 +100,7 @@ class CartController extends Controller
     }
 
     public function viewDetailHistory($id){
-        $transaction = Transaction::where('history_id',$id);
-        return view('transactionDetail',compact('transaction'));
+        $transactions = Transaction::where('history_id',$id);
+        return view('transactionDetail',compact('transactions'));
     }
 }

@@ -61,7 +61,7 @@ $categories = Category::all();
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('userCart') }}"> My Cart </a>
-                                <a class="dropdown-item" href=""> Transaction History</a>
+                                <a class="dropdown-item" href="{{ route('transactionHistory') }}"> Transaction History</a>
                                 <a class="dropdown-item" href="{{ route('changePassword') }}"> Change Password</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

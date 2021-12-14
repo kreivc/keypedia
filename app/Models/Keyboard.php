@@ -18,7 +18,11 @@ class Keyboard extends Model
     }
 
     public function cart(){
-        return $this->hasOne(Cart::class, 'id');
+        return $this->hasOne(Cart::class);
+    }
+
+    public function transaction(){
+        return $this->hasOne(Transaction::class);
     }
 
 }

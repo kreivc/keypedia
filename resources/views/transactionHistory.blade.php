@@ -2,7 +2,7 @@
 
 @section('content')
 @foreach ( $histories as $history )
-    <p>Transaction at {{ $history->transactionDate }}</p>
+    <a href="/transactionDetail/{{ $history->id }}" class="text-white">Transaction at {{ $history->transactionDate }}</a>
 @endforeach
 
 
