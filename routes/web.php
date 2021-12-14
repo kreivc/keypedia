@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KeyboardController;
 use App\Http\Controllers\CategoryController;
@@ -42,6 +43,8 @@ Route::post('/changePassword',[HomeController::class,'storeNewPassword'])->middl
 
 Route::get('/viewKeyboard/{id}',[CategoryController::class,'viewByCategory'])->name('viewKeyboard');
 Route::get('/keyboard/detail/{id}',[KeyboardController::class,'viewDetail'])->name('detailKeyboard');
+Route::post('/addToCart/{id}',[CartController::class,'addToCart'])->middleware('auth')->name('addCart');
+
 
 Route::get('/search',[CategoryController::class,'search'])->name('search');
 
