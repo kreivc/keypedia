@@ -41,5 +41,6 @@ Route::get('/changePassword',[HomeController::class,'changePassword'])->middlewa
 Route::post('/changePassword',[HomeController::class,'storeNewPassword'])->middleware('auth')->name('storeNewPassword');
 
 Route::get('/viewKeyboard/{id}',[CategoryController::class,'viewByCategory'])->name('viewKeyboard');
+Route::get('/keyboard/detail/{id}',[KeyboardController::class,'viewDetail'])->name('detailKeyboard');
 
 Route::get('/search',[CategoryController::class,'search'])->name('search');

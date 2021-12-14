@@ -47,6 +47,11 @@ class KeyboardController extends Controller
         return redirect(route('createKeyboard'))->with('success','Data Success Send to database!');
     }
 
+    public function viewDetail($id){
+        $keyboard = Keyboard::find($id);
+        return view('detailKeyboard', compact('keyboard'));
+    }
+
     public function delete($id){
         $keyboard = Keyboard::find($id);
         Storage::delete($keyboard->image);

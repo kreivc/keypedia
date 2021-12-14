@@ -27,7 +27,7 @@
                     <div class="card bg-inside" style="width: 20rem;">
                         <img src="/storage/assets/{{ $key->image }}" class="d-block w-100" alt="{{ $key->name }}">
                         <div class="card-body text-center">
-                            <a class="card-text h5" href="#">{{ $key->name }}</a>
+                            <a class="card-text h5" href="/keyboard/detail/{{ $key->id }}">{{ $key->name }}</a>
                             <p class="card-text h5 text-white">US$ {{ $key->price }}</p>
                             @if (Auth::user())
                                 @if (Auth::user()->role == 'manager')
