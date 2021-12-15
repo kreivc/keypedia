@@ -37,6 +37,7 @@ class CartController extends Controller
             $cart->quantity = $cart->quantity+$request->quantity;
         }
         
+        
         $cart->save();
         $carts = Cart::where('user_id', auth()->user()->id)->get();
         return view('userCart',compact('carts'));
@@ -105,7 +106,9 @@ class CartController extends Controller
 
     public function viewDetailHistory($id){
         $history = History::where('id',$id)->where('user_id',auth()->user()->id)->first();
-        $transactions = Transaction::where('history_id',$history->id);
+        // dd($history);
+        $transactions = Transaction::where('history_id',$id)->get();
+        // dd($transactions);
         return view('transactionDetail',compact('transactions'));
     }
 }

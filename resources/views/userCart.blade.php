@@ -17,7 +17,7 @@
             <div class="col-md-10">
                 <div class="card">
                     <div class="card-header bg-outside">My Cart</div>
-                    @if ($carts != null)
+                    @if (!empty($carts))
                     <div class="card-body bg-inside">
                             @foreach ($carts as $cart)
                                 <div class="d-flex align-self-start mb-3">
