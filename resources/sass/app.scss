@@ -8,7 +8,7 @@
 @import "~bootstrap/scss/bootstrap";
 
 .content-minh {
-    min-height: 86vh;
+    min-height: calc(100vh - 55.04px - 39.04px);
 }
 
 .bg-base {
@@ -36,4 +36,15 @@
 
 .rounded-xl {
     border-radius: 10px !important;
+}
+
+.borderTable {
+    border-color: black !important;
+    border-style: dashed !important;
+    border-left: none !important;
+    border-right: none !important;
+}
+
+.bg-categoryName {
+    background-color: #b1e4dd;
 }

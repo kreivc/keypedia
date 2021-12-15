@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2 class="display-4 text-center mb-5">Your Transaction</h2>
+    <h2 class="display-4 text-center mb-5">Your Transaction History</h2>
     <div class="d-flex flex-column">
         @foreach ($histories as $history)
             <div class="justify-content-center mb-4 text-center">

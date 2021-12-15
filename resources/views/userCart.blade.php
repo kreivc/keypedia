@@ -17,8 +17,8 @@
             <div class="col-md-10">
                 <div class="card">
                     <div class="card-header bg-outside">My Cart</div>
-                    @if (count($carts)!=0)
-                    <div class="card-body bg-inside">
+                    @if (count($carts) != 0)
+                        <div class="card-body bg-inside">
                             @foreach ($carts as $cart)
                                 <div class="d-flex align-self-start mb-3">
                                     <div style="width: 20rem;" class="mr-4">
@@ -64,26 +64,26 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach   
-                        <div>
-                            <div class="d-flex justify-content-center">
-                                <a href="/cart/checkout" class="btn bg-button text-white">
-                                    Checkout
-                                </a>
+                            @endforeach
+                            <div>
+                                <div class="d-flex justify-content-center">
+                                    <a href="/cart/checkout" class="btn bg-button text-white">
+                                        Checkout
+                                    </a>
+                                </div>
                             </div>
-                        </div>
                         @else
-                        <div>
-                            <div class="d-flex justify-content-center">
-                                <p  class="bg-button text-white p-3 rounded-lg">
-                                    No Item in Your Cart.
-                                </p>
+                            <div class="bg-inside">
+                                <div class="d-flex justify-content-center mt-3">
+                                    <p class="bg-button text-white p-2 rounded-lg">
+                                        No Item in Your Cart.
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        @endif
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection

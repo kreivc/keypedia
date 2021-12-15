@@ -18,7 +18,6 @@
             <p class="h1 font-weight-bold">Welcome to Keypedia</p>
             <p class="h5 font-weight-bold">Best Keyboard and Keycaps Shop</p>
             <p class="h2 font-weight-bold mt-4">Categories</p>
-
         </div>
 
         <div class="d-flex justify-content-center align-items-center flex-wrap">

@@ -2,7 +2,7 @@
 @section('content')
 
     <div class="container">
-        <div class="text-center my-4 bg-success">
+        <div class="text-center my-4 bg-categoryName">
             <p class="h1 font-weight-bold">{{ $category->name }}</p>
         </div>
 
