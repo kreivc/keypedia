@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Category;
 use App\Models\Keyboard;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
@@ -17,7 +18,8 @@ class CategoryController extends Controller
 
     public function delete($id){
         $category = Category::find($id);
-        Storage::delete($category->image);
+        unlink('public/assets/'.$category->image);
+        File::delete(public_path('assets').'/'.$category->image);
         $category->delete();
 
         return redirect()->back();
