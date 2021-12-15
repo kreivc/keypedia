@@ -101,15 +101,8 @@ class CartController extends Controller
     }
 
     public function viewDetailHistory($id){
-<<<<<<< HEAD
         $history = History::where('id',$id)->where('user_id', auth()->user()->id)->first();
         $transactions = Transaction::where('history_id', $history->id);
-=======
-        $history = History::where('id',$id)->where('user_id',auth()->user()->id)->first();
-        // dd($history);
-        $transactions = Transaction::where('history_id',$id)->get();
-        // dd($transactions);
->>>>>>> aba3698de16cf1b36b3f98f86b5b9289b5464919
         return view('transactionDetail',compact('transactions'));
     }
 }
