@@ -17,7 +17,7 @@
             <div class="col-md-10">
                 <div class="card">
                     <div class="card-header bg-outside">My Cart</div>
-                    @if (!empty($carts))
+                    @if (count($carts)!=0)
                     <div class="card-body bg-inside">
                             @foreach ($carts as $cart)
                                 <div class="d-flex align-self-start mb-3">
@@ -35,7 +35,7 @@
                                         </div>
 
                                         <div class="form-group row justify-content-center">
-                                            <form method="POST" action="/userCart/update/{{ $cart->id }}"
+                                            <form method="POST" action="/cart/update/{{ $cart->id }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="d-flex align-items-center justify-content-center">
@@ -67,7 +67,7 @@
                             @endforeach   
                         <div>
                             <div class="d-flex justify-content-center">
-                                <a href="/userCart/checkout" class="btn bg-button text-white">
+                                <a href="/cart/checkout" class="btn bg-button text-white">
                                     Checkout
                                 </a>
                             </div>

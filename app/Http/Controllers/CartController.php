@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
 {
+
+    public function viewCart(){
+        $carts = Cart::where('user_id', auth()->user()->id)->get();
+        return view('userCart',compact('carts'));
+    }
+
     public function addToCart($id, Request $request){
         if(!auth()){
             return redirect()->back()->withErrors('Please login first!')->withInput();
@@ -27,7 +33,7 @@ class CartController extends Controller
         $cart = Cart::where('user_id', auth()->user()->id)->where('keyboard_id',$id)->first();
 
 
-        if($cart==NULL){
+        if($cart==null){
             $cart=Cart::create([
                 'user_id' => auth()->user()->id,
                 'keyboard_id' => $id,
@@ -38,7 +44,8 @@ class CartController extends Controller
         }
         $cart->save();
         $carts = Cart::where('user_id', auth()->user()->id)->get();
-        return view('userCart',compact('carts'));
+        return redirect(route('userCart'))->with(compact('carts'))->with('success', 'Success add To Cart!');
+
     }
 
     public function updateCart($id, Request $request){
@@ -59,18 +66,15 @@ class CartController extends Controller
         }
         $cart->save();
         $carts = Cart::where('user_id', auth()->user()->id)->get();
-        return view('userCart',compact('carts'));
+        // return view('userCart',compact('carts'));
+        return redirect(route('userCart'))->with(compact('carts'))->with('success', 'Success delete Item!');
     }
 
-    public function viewCart(){
-        $carts = Cart::where('user_id', auth()->user()->id)->get();
-        return view('userCart',compact('carts'));
-    }
 
     public function checkout(){
         $carts = Cart::where('user_id', auth()->user()->id)->get();
         if(count($carts)==0){
-            return redirect()->back()->withErrors("Failed Checkout Cart!")->withInput();
+            return redirect(route('transactionHistory'))->withErrors("Failed Checkout Cart!")->withInput();
         }
 
         $history = History::create([
@@ -88,7 +92,6 @@ class CartController extends Controller
             $transaction->save();
         }
 
-
         $cartDelete = Cart::truncate();
 
         $histories = History::where('user_id',auth()->user()->id)->get();
@@ -102,7 +105,7 @@ class CartController extends Controller
 
     public function viewDetailHistory($id){
         $history = History::where('id',$id)->where('user_id', auth()->user()->id)->first();
-        $transactions = Transaction::where('history_id', $history->id);
-        return view('transactionDetail',compact('transactions'));
+        $transactions = Transaction::where('history_id', $history->id)->get();
+        return view('transactionDetail',compact('transactions','history'));
     }
 }

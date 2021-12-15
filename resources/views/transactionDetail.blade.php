@@ -2,6 +2,8 @@
 
 
 @section('content')
+
+    <p>Your Transaction at {{ $history->transactionDate }}</p>
     @php
         $temp = 0;
     @endphp
