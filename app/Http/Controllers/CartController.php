@@ -25,8 +25,8 @@ class CartController extends Controller
         }
 
         $cart = Cart::where('user_id', auth()->user()->id)->where('keyboard_id',$id)->first();
-      
-        
+
+
         if($cart==NULL){
             $cart=Cart::create([
                 'user_id' => auth()->user()->id,
@@ -36,7 +36,7 @@ class CartController extends Controller
         }else{
             $cart->quantity = $cart->quantity+$request->quantity;
         }
-        
+
         $cart->save();
         $carts = Cart::where('user_id', auth()->user()->id)->get();
         return view('userCart',compact('carts'));
@@ -69,8 +69,8 @@ class CartController extends Controller
     }
 
     public function checkout(){
-        $carts = Cart::where('user_id',auth()->user()->id)->get();
-        if($carts == NULL){
+        $carts = Cart::where('user_id', auth()->user()->id)->get();
+        if(count($carts)==0){
             return redirect()->back()->withErrors("Failed Checkout Cart!")->withInput();
         }
 
@@ -89,10 +89,8 @@ class CartController extends Controller
             $transaction->save();
         }
 
-       
+
         $cartDelete = Cart::truncate();
-       
-        //$cartDelete = Cart::query()->forceDelete();
 
         $histories = History::where('user_id',auth()->user()->id)->get();
         return view('transactionHistory',compact('histories'));
@@ -104,8 +102,8 @@ class CartController extends Controller
     }
 
     public function viewDetailHistory($id){
-        $history = History::where('id',$id)->where('user_id',auth()->user()->id)->first();
-        $transactions = Transaction::where('history_id',$history->id);
+        $history = History::where('id',$id)->where('user_id', auth()->user()->id)->first();
+        $transactions = Transaction::where('history_id', $history->id);
         return view('transactionDetail',compact('transactions'));
     }
 }
