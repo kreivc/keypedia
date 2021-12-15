@@ -18,7 +18,7 @@ class CategoryController extends Controller
 
     public function delete($id){
         $category = Category::find($id);
-        unlink('public/assets/'.$category->image);
+        Storage::delete('public/assets/'.$category->image);
         File::delete(public_path('assets').'/'.$category->image);
         $category->delete();
 

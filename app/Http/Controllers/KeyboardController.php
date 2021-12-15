@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Keyboard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -54,7 +55,8 @@ class KeyboardController extends Controller
 
     public function delete($id){
         $keyboard = Keyboard::find($id);
-        Storage::delete($keyboard->image);
+        Storage::delete('public/assets/'.$keyboard->image);
+        File::delete(public_path('assets').'/'.$keyboard->image);
         $keyboard->delete();
 
         return redirect()->back();
