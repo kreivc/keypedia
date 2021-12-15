@@ -25,7 +25,38 @@
                                 <div class="form-group row">
                                     <p class="col-form-label">{{ $keyboard->description }}</p>
                                 </div>
-                                @if (Auth::user()->role != 'manager')
+                                @if (Auth::user())
+                                    @if (Auth::user()->role != 'manager')
+                                        <div class="form-group row justify-content-center">
+                                            <form method="POST" action="/addToCart/{{ $keyboard->id }}"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                @method('PUT')
+                                                <div class="d-flex align-items-center justify-content-center">
+                                                    <label for="quantity"
+                                                        class="col-form-label text-md-left">Quantity</label>
+
+                                                    <div class="col-md-10">
+                                                        <input id="quantity" type="number" class="form-control"
+                                                            name="quantity" required autocomplete="quantity" min="1">
+                                                    </div>
+
+                                                    @error('quantity')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="d-flex justify-content-center mt-4">
+                                                    <button type="submit" class="btn bg-button text-white">
+                                                        Add to Cart
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    @endif
+                                @else
                                     <div class="form-group row justify-content-center">
                                         <form method="POST" action="/addToCart/{{ $keyboard->id }}"
                                             enctype="multipart/form-data">

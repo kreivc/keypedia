@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\History;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
@@ -18,7 +19,7 @@ class CartController extends Controller
     }
 
     public function addToCart($id, Request $request){
-        if(!auth()){
+        if(!Auth::check()){
             return redirect()->back()->withErrors('Please login first!')->withInput();
         }
 
@@ -66,8 +67,7 @@ class CartController extends Controller
         }
         $cart->save();
         $carts = Cart::where('user_id', auth()->user()->id)->get();
-        // return view('userCart',compact('carts'));
-        return redirect(route('userCart'))->with(compact('carts'))->with('success', 'Success delete Item!');
+        return redirect(route('userCart'))->with(compact('carts'))->with('success', 'Success update cart!');
     }
 
 
@@ -94,12 +94,12 @@ class CartController extends Controller
 
         $cartDelete = Cart::truncate();
 
-        $histories = History::where('user_id',auth()->user()->id)->get();
+        $histories = History::where('user_id',auth()->user()->id)->orderBy('transactionDate', "DESC")->get();
         return view('transactionHistory',compact('histories'));
     }
 
     public function viewHistory(){
-        $histories = History::where('user_id',auth()->user()->id)->get();
+        $histories = History::where('user_id',auth()->user()->id)->orderBy('transactionDate', "DESC")->get();
         return view('transactionHistory',compact('histories'));
     }
 

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @if (Session::has('success'))
-    <div class="alert alert-success">
+    <div class="alert alert-success m-0">
         <span>{{ Session::get('success') }}</span>
     </div>
 

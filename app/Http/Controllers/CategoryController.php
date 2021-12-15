@@ -34,7 +34,7 @@ class CategoryController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $category = Category::find($id); 
+        $category = Category::find($id);
         $category->name = $request->name;
 
         if($request->hasFile('image')){
@@ -74,7 +74,7 @@ class CategoryController extends Controller
         }
 
         $category = Category::find($categoryId);
-        
+
         return view('viewKeyboard', compact('keyboards', 'category'));
     }
 }

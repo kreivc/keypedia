@@ -35,7 +35,7 @@ Route::prefix('/category')->middleware('auth')->group(function(){
     Route::get('/manageCategory',[CategoryController::class,'index'])->middleware('manager')->name('manageCategory');
     Route::get('/edit/{id}',[CategoryController::class,'edit'])->middleware('manager')->name('editCategory');
     Route::put('/update/{id}',[CategoryController::class,'update'])->middleware('manager')->name('updateCategory');
-    Route::get('/delete/{id}',[CategoryController::class,'delete'])->middleware('manager')->name('delete');
+    Route::get('/delete/{id}',[CategoryController::class,'delete'])->middleware('manager')->name('deleteCategory');
 });
 
 Route::prefix('/cart')->middleware('auth')->middleware('customer')->group(function(){
@@ -51,8 +51,7 @@ Route::get('/viewKeyboard/{id}',[CategoryController::class,'viewByCategory'])->n
 Route::get('/keyboard/detail/{id}',[KeyboardController::class,'viewDetail'])->name('detailKeyboard');
 Route::put('/addToCart/{id}',[CartController::class,'addToCart'])->middleware('auth')->name('addCart');
 
-Route::get('/transactionHistory',[CartController::class,'viewHistory'])->middleware('customer')->name('transactionHistory');
-Route::get('/transactionDetail/{id}',[CartController::class,'viewDetailHistory'])->middleware('customer')->name('transactionDetail');
-
+Route::get('/transactionHistory',[CartController::class,'viewHistory'])->middleware('auth')->middleware('customer')->name('transactionHistory');
+Route::get('/transactionDetail/{id}',[CartController::class,'viewDetailHistory'])->middleware('auth')->middleware('customer')->name('transactionDetail');
 
 Route::get('/search',[CategoryController::class,'search'])->name('search');

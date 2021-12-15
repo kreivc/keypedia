@@ -17,19 +17,19 @@ class CategorySeeder extends Seeder
         DB::table('categories')->insert([
             [
                 'name' => '87 Key Keyboard',
-                'image' => '1.jpg'
+                'image' => 'C1.jpg'
             ],
             [
                 'name' => '61 Key Keyboard',
-                'image' => '2.jpg'
+                'image' => 'C2.jpg'
             ],
             [
                 'name' => 'XDA Profile',
-                'image' => '3.jpg'
+                'image' => 'C3.jpg'
             ],
             [
                 'name' => 'Cherry Profile',
-                'image' => '4.jpg'
+                'image' => 'C4.jpg'
             ],
         ]);
     }

@@ -82,7 +82,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row {{ $errors->has('gender') ? ' has-error' : '' }}">
+                            <div class="form-group row">
                                 <label for="gender"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
                                 <div class="col-md-6 d-flex align-items-center">
@@ -102,12 +102,12 @@
                                             Female
                                         </label>
                                     </div>
+                                    @error('gender')
+                                        <span class="help-block ml-2 text-danger">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
-                                @error('gender')
-                                    <span class="help-block">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
 
                             <div class="form-group row">
